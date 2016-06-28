@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class Replies implements java.io.Serializable {
 
 	public static ArrayList<String> phrases;
-	public static ArrayList<Integer> weights;
+	public static ArrayList<Double> weights;
 
 	public Replies() {
 		phrases = new ArrayList<String>();
-		weights = new ArrayList<Integer>();
+		weights = new ArrayList<Double>();
 	}
 
 	public static void add(String response) {
@@ -16,25 +16,25 @@ public class Replies implements java.io.Serializable {
 			weights.set(index, weights.get(index) + 1);
 		} else {
 			phrases.add(response);
-			weights.add(1);
+			weights.add(1.0d);
 		}
 	}
 
 	public static String getResponse() {
-		int total = 0;
-		for (int w : weights) {
+		double total = 0.0d;
+		for (double w : weights) {
 			total += w;
 		}
 		int randomIndex = 0;
 		double random = Math.random() * total;
 		for (int i = 0; i < phrases.size(); i++) {
 			random -= weights.get(i);
-			if (random <= 0) {
+			if (random <= 0.0d) {
 				randomIndex = i;
 				break;
 			}
 		}
 		return phrases.get(randomIndex);
 	}
-	
+
 }
