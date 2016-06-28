@@ -4,7 +4,7 @@ public class Distance {
   // Get minimum of three values
   //****************************
 
-  private int Minimum (int a, int b, int c) {
+  private static int Minimum (int a, int b, int c) {
   int mi;
 
     mi = a;
@@ -22,7 +22,7 @@ public class Distance {
   // Compute Levenshtein distance
   //*****************************
 
-  public int LD (String s, String t) {
+  public static int LD (String s, String t) {
   int d[][]; // matrix
   int n; // length of s
   int m; // length of t
