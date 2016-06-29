@@ -18,8 +18,8 @@ public class Chatbot {
 			} else {
 				response = phrase;
 				store(database, call, response);
-				System.out.println("Roger: " + phrase);
-				call = phrase;
+				call = getResponse(database, phrase);
+				System.out.println("Roger: " + call);
 			}
 		}
 	}
@@ -27,6 +27,11 @@ public class Chatbot {
 	/* Store the call-response pair in the given database. */
 	private static void store(ChatDB database, String call, String response) {
 		database.add(call, response);
+	}
+
+	/* Get a response for call in the given database. */
+	private static String getResponse(ChatDB database, String call) {
+		return database.getResponse(call);
 	}
 
 	/* Serialize the given database to a file in the current directory. */

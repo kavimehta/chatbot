@@ -7,6 +7,7 @@ public class InitializeDB {
 		if (file.exists()) {
 			System.out.println("Database already exists");
 			System.exit(0);
+			return;
 		}
 		ChatDB database = new ChatDB();
 		try {
