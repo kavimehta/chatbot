@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Chatbot {
+
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String call = "";
@@ -10,9 +11,10 @@ public class Chatbot {
 		while (in.hasNext()) {
 			String phrase = in.nextLine();
 			if (phrase.equals("quit")) {
+				writeDB(database);
 				System.out.println("Roger: Goodbye, friend");
 				in.close();
-				break;
+				return;
 			} else {
 				response = phrase;
 				store(database, call, response);
@@ -24,7 +26,7 @@ public class Chatbot {
 
 	/* Store the call-response pair in the given database. */
 	private static void store(ChatDB database, String call, String response) {
-
+		database.add(call, response);
 	}
 
 	/* Serialize the given database to a file in the current directory. */
