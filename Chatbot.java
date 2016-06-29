@@ -37,6 +37,7 @@ public class Chatbot {
 	        out.writeObject(database);
 	        out.close();
 	        fileOut.close();
+	        System.out.println("Database written");
 	    } catch(IOException i) {
 	        i.printStackTrace();
 	    }
@@ -51,6 +52,7 @@ public class Chatbot {
 	        database = (ChatDB) in.readObject();
 	        in.close();
 	        fileIn.close();
+	        System.out.println("Database loaded");
 	        return database;
 	    } catch(IOException i) {
 	        i.printStackTrace();

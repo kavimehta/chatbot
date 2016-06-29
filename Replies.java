@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Replies implements java.io.Serializable {
 
-	public static ArrayList<String> phrases;
-	public static ArrayList<Double> weights;
+	public ArrayList<String> phrases;
+	public ArrayList<Double> weights;
 
 	public Replies() {
 		phrases = new ArrayList<String>();
@@ -11,7 +11,7 @@ public class Replies implements java.io.Serializable {
 	}
 
 	/* If the response is already in the replies, then increase its weight. Otherwise, add it with weight 1. */
-	public static void add(String response) {
+	public void add(String response) {
 		if (phrases.contains(response)) {
 			int index = phrases.indexOf(response);
 			weights.set(index, weights.get(index) + 1);
@@ -22,7 +22,7 @@ public class Replies implements java.io.Serializable {
 	}
 
 	/* Return a weighted random response. */
-	public static String getResponse() {
+	public String getResponse() {
 		double total = 0.0d;
 		for (double w : weights) {
 			total += w;
