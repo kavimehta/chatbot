@@ -10,6 +10,7 @@ public class Replies implements java.io.Serializable {
 		weights = new ArrayList<Double>();
 	}
 
+	/* If the response is already in the replies, then increase its weight. Otherwise, add it with weight 1. */
 	public static void add(String response) {
 		if (phrases.contains(response)) {
 			int index = phrases.indexOf(response);
@@ -20,6 +21,7 @@ public class Replies implements java.io.Serializable {
 		}
 	}
 
+	/* Return a weighted random response. */
 	public static String getResponse() {
 		double total = 0.0d;
 		for (double w : weights) {
