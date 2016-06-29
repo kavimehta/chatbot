@@ -12,7 +12,6 @@ public class Chatbot {
 			String phrase = in.nextLine();
 			if (phrase.equals("quit")) {
 				writeDB(database);
-				System.out.println("Roger: Goodbye, friend");
 				in.close();
 				return;
 			} else {
@@ -42,7 +41,7 @@ public class Chatbot {
 	        out.writeObject(database);
 	        out.close();
 	        fileOut.close();
-	        System.out.println("Database written");
+	        System.out.println("\nDatabase written");
 	    } catch(IOException i) {
 	        i.printStackTrace();
 	        System.out.println("Failed to write database");
@@ -58,7 +57,7 @@ public class Chatbot {
 	        database = (ChatDB) in.readObject();
 	        in.close();
 	        fileIn.close();
-	        System.out.println("Database loaded");
+	        System.out.println("Database loaded\n");
 	        return database;
 	    } catch(IOException i) {
 	        i.printStackTrace();

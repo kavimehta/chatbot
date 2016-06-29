@@ -24,11 +24,16 @@ public class ChatDB implements java.io.Serializable {
 		}
 	}
 
-	/* If the call is in this database, return a response. Otherwise, return the call. */
-	/* [TO DO] Use levenshtein distance to use a response if the call is "close enough" to an existing one. */
+	/* Return a response based on whether or not the call is in the database. */
 	public String getResponse(String call) {
 		if (callResponsePairs.containsKey(call)) {
-			return callResponsePairs.get(call).getResponse();
+			Replies options = callResponsePairs.get(call);
+			// If there is only one option, there is a chance to return the call.
+			if ((options.phrases.size() == 1) && (Math.random() < 0.15)) {
+				return call;
+			} else {
+				return callResponsePairs.get(call).getResponse();
+			}
 		} else {
 			int distance;
 			int minDistance = Integer.MAX_VALUE;
@@ -40,7 +45,8 @@ public class ChatDB implements java.io.Serializable {
 					closestMatch = phrase;
 				}
 			}
-			if (minDistance <= call.length()/3) {
+			// If the levenshtein distance is sufficiently small or by random chance, return the closest match.
+			if ((minDistance <= call.length()/3) || (Math.random() < 0.35)) {
 				return getResponse(closestMatch);
 			} else {
 				return call;
