@@ -5,8 +5,8 @@ public class Chatbot {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		String call = "";
-		String response = "";
+		String rogerMessage = "";
+		String userMessage = "";
 		ChatDB database = loadDB();
 		while (in.hasNext()) {
 			String phrase = in.nextLine();
@@ -16,10 +16,10 @@ public class Chatbot {
 				in.close();
 				return;
 			} else {
-				response = phrase;
-				store(database, call, response);
-				call = getResponse(database, phrase);
-				System.out.println("Roger: " + call);
+				userMessage = phrase;
+				store(database, rogerMessage, userMessage);
+				rogerMessage = getResponse(database, userMessage);
+				System.out.println("Roger: " + rogerMessage);
 			}
 		}
 	}
@@ -45,6 +45,7 @@ public class Chatbot {
 	        System.out.println("Database written");
 	    } catch(IOException i) {
 	        i.printStackTrace();
+	        System.out.println("Failed to write database");
 	    }
 	}
 

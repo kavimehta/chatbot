@@ -30,7 +30,21 @@ public class ChatDB implements java.io.Serializable {
 		if (callResponsePairs.containsKey(call)) {
 			return callResponsePairs.get(call).getResponse();
 		} else {
-			return call;
+			int distance;
+			int minDistance = Integer.MAX_VALUE;
+			String closestMatch = "";
+			for (String phrase : callResponsePairs.keySet()) {
+				distance = Distance.LD(call, phrase);
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestMatch = phrase;
+				}
+			}
+			if (minDistance <= call.length()/3) {
+				return getResponse(closestMatch);
+			} else {
+				return call;
+			}
 		}
 	}
 
