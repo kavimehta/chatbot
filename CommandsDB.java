@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Hashtable;
 import java.util.ArrayList;
 
-public class InitializeDB {
+public class CommandsDB {
 
 	public static void main(String[] args) {
 		File file = new File("database.ser");
