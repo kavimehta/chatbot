@@ -6,13 +6,15 @@ public class CommandsDB {
 
 	public static void main(String[] args) {
 		if (args.length != 1) {
-			System.out.println("You must provide an argument - either print or initialize");
+			System.out.println("You must provide one argument - either print or initialize");
 		} else if (args[0].equals("print")) {
 			printDB();
 			return;
 		} else if (args[0].equals("initialize")) {
 			initializeDB();
 			return;
+		} else {
+			System.out.println("The argument options are print and initialize");
 		}
 	}
 
